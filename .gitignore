@@ -1,0 +1,95 @@
+# ==============================
+# 📁 JAVA / ANT / NETBEANS
+# ==============================
+
+# Archivos de compilación y build
+/build/
+dist/
+nbproject/private/
+build.xml~
+
+# Archivos de NetBeans generados automáticamente
+/nbproject/private/
+/nbproject/configs/
+/nbproject/project.properties~
+/nbproject/project.xml~
+
+# Archivos de caché o temporales
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.tmp
+*.bak
+*.swp
+*.lock
+*.DS_Store
+
+# Archivos de configuración local (no deben subirse)
+*.iml
+*.ipr
+*.iws
+*.idea/
+.vscode/
+
+# Dependencias descargadas localmente
+/lib/
+target/
+
+# ==============================
+# 🐘 PHP / XAMPP API
+# ==============================
+
+# Archivos de caché de PHP
+*.cache
+*.tmp
+*.bak
+*.log
+
+# Configuración local de PHP y XAMPP
+config.php
+conexion.php
+
+# Archivos de entorno o credenciales
+.env
+.env.local
+.env.*.local
+
+# Archivos de respaldo del editor
+*~
+*.orig
+
+# ==============================
+# ⚙️ MISC
+# ==============================
+
+# Archivos del sistema operativo
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Archivos de backup
+*.bak
+*.old
+*.save
+
+# ==============================
+# 💾 MYSQL
+# ==============================
+
+# Exportaciones de bases de datos (opcional)
+*.sql
+*.sql.gz
+
+# ==============================
+# 🧰 PERSONAL
+# ==============================
+
+# Archivos personales o de pruebas
+/pruebas/
+/test/
+/temp/
+/notas/
+/doc/
