@@ -4,6 +4,11 @@
  */
 package biblioteca_app.interfaz.libros_menu;
 
+import biblioteca_app.model.Estado;
+import biblioteca_app.dao.LibroDAO;
+import biblioteca_app.model.Libro;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lester7u7
@@ -16,6 +21,11 @@ public class RegistrarLibro extends javax.swing.JDialog {
     public RegistrarLibro(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        //usando el enum Estado
+        for(Estado estado : Estado.values()){
+            jComboBoxEstadoLibro.addItem(estado.toString());
+        }
     }
 
     /**
@@ -28,15 +38,20 @@ public class RegistrarLibro extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldIngresoNombreLibro = new javax.swing.JTextField();
+        jTextFieldIngresoNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldIngresoTituloLibro = new javax.swing.JTextField();
+        jTextFieldIngresoTitulo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldIngresoAutorLibro = new javax.swing.JTextField();
+        jTextFieldIngresoAutor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextFieldIngresoGeneroLibro = new javax.swing.JTextField();
+        jTextFieldIngresoGenero = new javax.swing.JTextField();
         jButtonRegistrarLibro = new javax.swing.JButton();
         jButtonBorrarCampos = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jComboBoxEstadoLibro = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jTextFieldIngresoCodigo = new javax.swing.JTextField();
+        jButtonRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -49,72 +64,166 @@ public class RegistrarLibro extends javax.swing.JDialog {
         jLabel4.setText("Ingrese el genero del libro");
 
         jButtonRegistrarLibro.setText("Registrar");
+        jButtonRegistrarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarLibroActionPerformed(evt);
+            }
+        });
 
         jButtonBorrarCampos.setText("Borrar campos");
+        jButtonBorrarCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarCamposActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Estado del Libro:");
+
+        jComboBoxEstadoLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEstadoLibroActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Ingrese el codigo del libro:");
+
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(108, 108, 108)
+                .addComponent(jButtonRegistrarLibro)
+                .addGap(49, 49, 49)
+                .addComponent(jButtonBorrarCampos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(jButtonRegresar)
+                .addGap(42, 42, 42))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(75, 75, 75)
-                                    .addComponent(jLabel2))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jLabel1)))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextFieldIngresoNombreLibro, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                .addComponent(jTextFieldIngresoTituloLibro)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(67, 67, 67)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextFieldIngresoAutorLibro, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                                .addComponent(jTextFieldIngresoGeneroLibro))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jButtonRegistrarLibro)
-                        .addGap(58, 58, 58)
-                        .addComponent(jButtonBorrarCampos)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxEstadoLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(130, 130, 130))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldIngresoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldIngresoCodigo)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jTextFieldIngresoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldIngresoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldIngresoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)))
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextFieldIngresoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextFieldIngresoNombreLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldIngresoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextFieldIngresoTituloLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldIngresoTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextFieldIngresoAutorLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                    .addComponent(jTextFieldIngresoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextFieldIngresoGeneroLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addComponent(jTextFieldIngresoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jComboBoxEstadoLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRegistrarLibro)
-                    .addComponent(jButtonBorrarCampos))
-                .addGap(39, 39, 39))
+                    .addComponent(jButtonBorrarCampos)
+                    .addComponent(jButtonRegresar))
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBoxEstadoLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoLibroActionPerformed
+        String selec = (String) jComboBoxEstadoLibro.getSelectedItem();
+        Estado estadoSelec = Estado.valueOf(selec);
+    }//GEN-LAST:event_jComboBoxEstadoLibroActionPerformed
+
+    private void jButtonRegistrarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarLibroActionPerformed
+        String codigo = jTextFieldIngresoCodigo.getText();
+        String titulo = jTextFieldIngresoTitulo.getText();
+        String autor = jTextFieldIngresoAutor.getText();
+        String genero = jTextFieldIngresoGenero.getText();
+        Estado estado = Estado.valueOf(jComboBoxEstadoLibro.getSelectedItem().toString());
+        
+        //validando
+        if (codigo.isEmpty() || titulo.isEmpty() || autor.isEmpty() || genero.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Porfavor complete los campos");
+            return;
+        }
+        
+        Libro libro = new Libro(0, codigo, titulo, autor, genero, estado);
+        
+        LibroDAO libroDAO = new LibroDAO();
+        boolean exito = libroDAO.registrarLibro(libro);
+        
+        if (exito){
+            JOptionPane.showMessageDialog(this, "Libro registrado correctamente");
+            
+            jTextFieldIngresoCodigo.setText("");
+            jTextFieldIngresoNombre.setText("");
+            jTextFieldIngresoTitulo.setText("");
+            jTextFieldIngresoAutor.setText("");
+            jTextFieldIngresoGenero.setText("");
+            jComboBoxEstadoLibro.setSelectedIndex(0);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al registrar libro");
+        }
+        
+    }//GEN-LAST:event_jButtonRegistrarLibroActionPerformed
+
+    private void jButtonBorrarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarCamposActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonBorrarCamposActionPerformed
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,13 +271,18 @@ public class RegistrarLibro extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBorrarCampos;
     private javax.swing.JButton jButtonRegistrarLibro;
+    private javax.swing.JButton jButtonRegresar;
+    private javax.swing.JComboBox<String> jComboBoxEstadoLibro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextFieldIngresoAutorLibro;
-    private javax.swing.JTextField jTextFieldIngresoGeneroLibro;
-    private javax.swing.JTextField jTextFieldIngresoNombreLibro;
-    private javax.swing.JTextField jTextFieldIngresoTituloLibro;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField jTextFieldIngresoAutor;
+    private javax.swing.JTextField jTextFieldIngresoCodigo;
+    private javax.swing.JTextField jTextFieldIngresoGenero;
+    private javax.swing.JTextField jTextFieldIngresoNombre;
+    private javax.swing.JTextField jTextFieldIngresoTitulo;
     // End of variables declaration//GEN-END:variables
 }

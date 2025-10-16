@@ -9,8 +9,8 @@ package biblioteca_app.model;
  * @author Olga
  */
 public enum Estado {
-    DISPONIBLE,
-    ALQUILADO,
-    PERDIDO,
-    BAJA
+    disponible,
+    alquilado,
+    perdido,
+    baja
 }

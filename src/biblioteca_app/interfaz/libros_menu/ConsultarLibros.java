@@ -4,18 +4,51 @@
  */
 package biblioteca_app.interfaz.libros_menu;
 
+import biblioteca_app.model.Libro;
+import biblioteca_app.dao.LibroDAO;
+import biblioteca_app.model.Estado;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author lester7u7
+ * @author Olga
  */
 public class ConsultarLibros extends javax.swing.JDialog {
 
     /**
      * Creates new form ConsultarLibros
      */
+    private LibroDAO libroDAO = new LibroDAO();
+    private DefaultTableModel modeloTabla;
+    //llenar la tabla
+    private void llenarTabla(List<Libro> listaLibros){
+        modeloTabla.setRowCount(0);
+        for(Libro libro : listaLibros){
+            Object[] fila = {
+                libro.getId(),
+                libro.getCodigo(),
+                libro.getTitulo(),
+                libro.getAutor(),
+                libro.getGenero(),
+                libro.getEstado().toString()
+            };
+            //agregando a las filas
+            modeloTabla.addRow(fila);
+        }
+    }
+    
+    private void configurarTabla(){
+        String[] columnas = {"Id", "Codigo", "Titulo", "Autor", "Genero", "Estado"};
+        modeloTabla = new DefaultTableModel(columnas, 0);
+        jTable1.setModel(modeloTabla);
+    }
+    
     public ConsultarLibros(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        configurarTabla();
     }
 
     /**
@@ -27,17 +60,35 @@ public class ConsultarLibros extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldIngresoNombreLibroParaBuscar = new javax.swing.JTextField();
         jButtonBuscarLibro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButtonActualizarLibro = new javax.swing.JButton();
+        jButtonEliminarLibro = new javax.swing.JButton();
+        jButtonMostrarLibros = new javax.swing.JButton();
+        jButtonRegresar = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Ingrese nombre del Libro:");
 
+        jTextFieldIngresoNombreLibroParaBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIngresoNombreLibroParaBuscarActionPerformed(evt);
+            }
+        });
+
         jButtonBuscarLibro.setText("Buscar");
+        jButtonBuscarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarLibroActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -52,23 +103,56 @@ public class ConsultarLibros extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jButtonActualizarLibro.setText("Actualizar Libro");
+        jButtonActualizarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarLibroActionPerformed(evt);
+            }
+        });
+
+        jButtonEliminarLibro.setText("Eliminar Libro");
+        jButtonEliminarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarLibroActionPerformed(evt);
+            }
+        });
+
+        jButtonMostrarLibros.setText("Mostrar Libros");
+        jButtonMostrarLibros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarLibrosActionPerformed(evt);
+            }
+        });
+
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addComponent(jLabel1)
+                .addGap(32, 32, 32)
+                .addComponent(jTextFieldIngresoNombreLibroParaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jButtonBuscarLibro)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(jLabel1)
-                        .addGap(32, 32, 32)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jButtonBuscarLibro))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 721, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(jButtonActualizarLibro)
+                    .addComponent(jButtonEliminarLibro)
+                    .addComponent(jButtonMostrarLibros)
+                    .addComponent(jButtonRegresar))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,15 +160,84 @@ public class ConsultarLibros extends javax.swing.JDialog {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldIngresoNombreLibroParaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonBuscarLibro))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(jButtonMostrarLibros)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButtonActualizarLibro)
+                        .addGap(31, 31, 31)
+                        .addComponent(jButtonEliminarLibro)
+                        .addGap(30, 30, 30)
+                        .addComponent(jButtonRegresar)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldIngresoNombreLibroParaBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIngresoNombreLibroParaBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIngresoNombreLibroParaBuscarActionPerformed
+
+    private void jButtonBuscarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarLibroActionPerformed
+        String titulo = jTextFieldIngresoNombreLibroParaBuscar.getText().trim();
+        
+        if (titulo.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese un título para buscar");
+            return;
+        }
+        
+        List<Libro> lista = libroDAO.buscarLibrosPorTitulo(titulo);
+        llenarTabla(lista);
+    }//GEN-LAST:event_jButtonBuscarLibroActionPerformed
+
+    private void jButtonMostrarLibrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarLibrosActionPerformed
+        List<Libro> lista = libroDAO.listarLibros();
+        llenarTabla(lista);
+    }//GEN-LAST:event_jButtonMostrarLibrosActionPerformed
+
+    private void jButtonActualizarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarLibroActionPerformed
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada == -1){
+            JOptionPane.showMessageDialog(this, "Seleccione un libro para actualizar");
+            return;
+        }
+        
+        ActualizarLibro actu = new ActualizarLibro(null, true);
+        actu.setLocationRelativeTo(null);
+        actu.setVisible(true);
+    }//GEN-LAST:event_jButtonActualizarLibroActionPerformed
+
+    private void jButtonEliminarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarLibroActionPerformed
+        int filaSeleccionada = jTable1.getSelectedRow();
+        
+        if (filaSeleccionada == -1){
+            JOptionPane.showMessageDialog(this, "Seleccione un libro para eliminar");
+            return;
+        }
+        
+        int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
+        int confirmar = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar el libro?");
+        
+        if (confirmar == JOptionPane.YES_OPTION){
+            JOptionPane.showMessageDialog(this, "Libro eliminado");
+            List<Libro> lista = libroDAO.listarLibros();
+            llenarTabla(lista);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al eliminar el libro :c");
+        }
+        
+    }//GEN-LAST:event_jButtonEliminarLibroActionPerformed
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,10 +282,15 @@ public class ConsultarLibros extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonActualizarLibro;
     private javax.swing.JButton jButtonBuscarLibro;
+    private javax.swing.JButton jButtonEliminarLibro;
+    private javax.swing.JButton jButtonMostrarLibros;
+    private javax.swing.JButton jButtonRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldIngresoNombreLibroParaBuscar;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,7 +9,7 @@ package biblioteca_app.model;
  * @author Olga
  */
 public enum Devuelto {
-    SI,
-    NO,
-    PENDIENTE
+    si,
+    no,
+    pendiente
 }

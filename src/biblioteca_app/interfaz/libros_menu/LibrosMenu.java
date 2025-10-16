@@ -30,6 +30,7 @@ public class LibrosMenu extends javax.swing.JDialog {
 
         jButtonRegistrarLibros = new javax.swing.JButton();
         jButtonConsultarLirbos = new javax.swing.JButton();
+        jButtonRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -41,6 +42,18 @@ public class LibrosMenu extends javax.swing.JDialog {
         });
 
         jButtonConsultarLirbos.setText("Consultar Libros");
+        jButtonConsultarLirbos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarLirbosActionPerformed(evt);
+            }
+        });
+
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -49,6 +62,7 @@ public class LibrosMenu extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonRegresar)
                     .addComponent(jButtonConsultarLirbos)
                     .addComponent(jButtonRegistrarLibros))
                 .addContainerGap(117, Short.MAX_VALUE))
@@ -60,7 +74,9 @@ public class LibrosMenu extends javax.swing.JDialog {
                 .addComponent(jButtonRegistrarLibros)
                 .addGap(30, 30, 30)
                 .addComponent(jButtonConsultarLirbos)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonRegresar)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -71,6 +87,16 @@ public class LibrosMenu extends javax.swing.JDialog {
         registrar.setLocationRelativeTo(null);
         registrar.setVisible(true);
     }//GEN-LAST:event_jButtonRegistrarLibrosActionPerformed
+
+    private void jButtonConsultarLirbosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarLirbosActionPerformed
+        ConsultarLibros consul = new ConsultarLibros(null, true);
+        consul.setLocationRelativeTo(null);
+        consul.setVisible(true);
+    }//GEN-LAST:event_jButtonConsultarLirbosActionPerformed
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,5 +143,6 @@ public class LibrosMenu extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultarLirbos;
     private javax.swing.JButton jButtonRegistrarLibros;
+    private javax.swing.JButton jButtonRegresar;
     // End of variables declaration//GEN-END:variables
 }
