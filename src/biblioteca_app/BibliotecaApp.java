@@ -4,6 +4,10 @@
  */
 package biblioteca_app;
 
+import biblioteca_app.interfaz.Menu;
+import biblioteca_app.dao.Conexion;
+import java.sql.Connection;
+
 /**
  *
  * @author Olga
@@ -14,7 +18,12 @@ public class BibliotecaApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Menu menu = new Menu(null, true);
+        menu.setLocationRelativeTo(null);
+        menu.setVisible(true);
     }
+    
+    Connection conn = Conexion.getConnection();
+    
     
 }
