@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package biblioteca_app.interfaz.clientes_menu;
+package biblioteca_app.interfaz.alquileres_menu;
 
 /**
  *
  * @author lester7u7
  */
-public class ClientesMenu extends javax.swing.JDialog {
+public class AlquileresMenu extends javax.swing.JDialog {
 
     /**
-     * Creates new form ClientesMenu
+     * Creates new form AlquileresMenu
      */
-    public ClientesMenu(java.awt.Frame parent, boolean modal) {
+    public AlquileresMenu(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -27,22 +27,22 @@ public class ClientesMenu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonRegistrarCliente = new javax.swing.JButton();
-        jButtonConsultarCliente = new javax.swing.JButton();
+        jButtonRealizarAlquiler = new javax.swing.JButton();
+        jButtonConsultarAlquiler = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButtonRegistrarCliente.setText("Registrar Cliente");
-        jButtonRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
+        jButtonRealizarAlquiler.setText("Realizar un Alquiler");
+        jButtonRealizarAlquiler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRegistrarClienteActionPerformed(evt);
+                jButtonRealizarAlquilerActionPerformed(evt);
             }
         });
 
-        jButtonConsultarCliente.setText("Consultar Cliente");
-        jButtonConsultarCliente.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConsultarAlquiler.setText("Consultar Alquiler");
+        jButtonConsultarAlquiler.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConsultarClienteActionPerformed(evt);
+                jButtonConsultarAlquilerActionPerformed(evt);
             }
         });
 
@@ -51,36 +51,36 @@ public class ClientesMenu extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addGap(103, 103, 103)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonConsultarCliente)
-                    .addComponent(jButtonRegistrarCliente))
-                .addContainerGap(88, Short.MAX_VALUE))
+                    .addComponent(jButtonConsultarAlquiler)
+                    .addComponent(jButtonRealizarAlquiler))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jButtonRealizarAlquiler)
                 .addGap(37, 37, 37)
-                .addComponent(jButtonRegistrarCliente)
-                .addGap(46, 46, 46)
-                .addComponent(jButtonConsultarCliente)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addComponent(jButtonConsultarAlquiler)
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarClienteActionPerformed
-        RegistrarClientes registrar = new RegistrarClientes(null, true);
+    private void jButtonRealizarAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarAlquilerActionPerformed
+        RegistrarAlquiler registrar = new RegistrarAlquiler(null, true);
         registrar.setLocationRelativeTo(null);
         registrar.setVisible(true);
-    }//GEN-LAST:event_jButtonRegistrarClienteActionPerformed
+    }//GEN-LAST:event_jButtonRealizarAlquilerActionPerformed
 
-    private void jButtonConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarClienteActionPerformed
-        ConsultarClientes consultar = new ConsultarClientes(null, true);
-        consultar.setLocationRelativeTo(null);
-        consultar.setVisible(true);
-    }//GEN-LAST:event_jButtonConsultarClienteActionPerformed
+    private void jButtonConsultarAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarAlquilerActionPerformed
+        ConsultarAlquiler consul = new ConsultarAlquiler(null, true); 
+        consul.setLocationRelativeTo(null);
+        consul.setVisible(true);
+    }//GEN-LAST:event_jButtonConsultarAlquilerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -99,20 +99,20 @@ public class ClientesMenu extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClientesMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlquileresMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClientesMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlquileresMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClientesMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlquileresMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClientesMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AlquileresMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ClientesMenu dialog = new ClientesMenu(new javax.swing.JFrame(), true);
+                AlquileresMenu dialog = new AlquileresMenu(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -125,7 +125,7 @@ public class ClientesMenu extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonConsultarCliente;
-    private javax.swing.JButton jButtonRegistrarCliente;
+    private javax.swing.JButton jButtonConsultarAlquiler;
+    private javax.swing.JButton jButtonRealizarAlquiler;
     // End of variables declaration//GEN-END:variables
 }

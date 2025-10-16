@@ -4,9 +4,13 @@
  */
 package biblioteca_app.interfaz;
 
+import biblioteca_app.interfaz.libros_menu.LibrosMenu;
+import biblioteca_app.interfaz.clientes_menu.ClientesMenu;
+import biblioteca_app.interfaz.alquileres_menu.AlquileresMenu;
+
 /**
  *
- * @author lester7u7
+ * @author Olga
  */
 public class Menu extends javax.swing.JDialog {
 
@@ -34,10 +38,25 @@ public class Menu extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButtonLibrosMenu.setText("Libros");
+        jButtonLibrosMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLibrosMenuActionPerformed(evt);
+            }
+        });
 
         jButtonAlquileresMenu.setText("Alquileres");
+        jButtonAlquileresMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlquileresMenuActionPerformed(evt);
+            }
+        });
 
         jButtonClientesMenu.setText("Cientes");
+        jButtonClientesMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClientesMenuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,6 +84,24 @@ public class Menu extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonLibrosMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLibrosMenuActionPerformed
+        LibrosMenu libros = new LibrosMenu(null, true);
+        libros.setLocationRelativeTo(null);
+        libros.setVisible(true);
+    }//GEN-LAST:event_jButtonLibrosMenuActionPerformed
+
+    private void jButtonAlquileresMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlquileresMenuActionPerformed
+        AlquileresMenu alquil = new AlquileresMenu(null, true); 
+        alquil.setLocationRelativeTo(null);
+        alquil.setVisible(true);
+    }//GEN-LAST:event_jButtonAlquileresMenuActionPerformed
+
+    private void jButtonClientesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClientesMenuActionPerformed
+        ClientesMenu cli = new ClientesMenu(null, true);
+        cli.setLocationRelativeTo(null);
+        cli.setVisible(true);
+    }//GEN-LAST:event_jButtonClientesMenuActionPerformed
 
     /**
      * @param args the command line arguments

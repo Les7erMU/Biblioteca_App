@@ -24,13 +24,12 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButtonClientesMenu" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonAlquileresMenu" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonLibrosMenu" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonConsultarAlquiler" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonRealizarAlquiler" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="99" max="32767" attributes="0"/>
+              <EmptySpace pref="101" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -38,39 +37,29 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="jButtonLibrosMenu" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButtonAlquileresMenu" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButtonClientesMenu" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="63" max="32767" attributes="0"/>
+              <Component id="jButtonRealizarAlquiler" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="jButtonConsultarAlquiler" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="75" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButtonLibrosMenu">
+    <Component class="javax.swing.JButton" name="jButtonRealizarAlquiler">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Libros"/>
+        <Property name="text" type="java.lang.String" value="Realizar un Alquiler"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLibrosMenuActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRealizarAlquilerActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonAlquileresMenu">
+    <Component class="javax.swing.JButton" name="jButtonConsultarAlquiler">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Alquileres"/>
+        <Property name="text" type="java.lang.String" value="Consultar Alquiler"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAlquileresMenuActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButtonClientesMenu">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cientes"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonClientesMenuActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonConsultarAlquilerActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
