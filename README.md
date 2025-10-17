@@ -32,6 +32,8 @@ src/
 
 
 ## Configuración de la base de datos
+#Para crear la base de datos
+CREATE DATABASE App_Biblioteca;
 #Para la tabla libro
 CREATE TABLE `libro`(
 	`id` int AUTO_INCREMENT PRIMARY KEY,
