@@ -60,23 +60,23 @@ public class LibrosMenu extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(92, 92, 92)
+                .addGap(71, 71, 71)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonRegresar)
                     .addComponent(jButtonConsultarLirbos)
                     .addComponent(jButtonRegistrarLibros))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(jButtonRegistrarLibros)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonConsultarLirbos)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonRegresar)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGap(36, 36, 36))
         );
 
         pack();

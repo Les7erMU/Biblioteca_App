@@ -4,11 +4,20 @@
  */
 package biblioteca_app.interfaz.alquileres_menu;
 
+import biblioteca_app.dao.AlquilerDAO;
+import biblioteca_app.model.Alquiler;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author lester7u7
+ * @author Olga
  */
 public class ConsultarAlquiler extends javax.swing.JDialog {
+    
+    private AlquilerDAO alquilerDAO;
+    private DefaultTableModel modeloTabla;
 
     /**
      * Creates new form ConsultarAlquiler
@@ -16,6 +25,62 @@ public class ConsultarAlquiler extends javax.swing.JDialog {
     public ConsultarAlquiler(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        alquilerDAO = new AlquilerDAO();
+        configurarTabla();
+    }
+    
+      // Configurar la tabla con las columnas necesarias
+    private void configurarTabla() {
+        String[] columnas = {"ID", "Libro", "Cliente", "Fecha Inicio", "Fecha Fin", "Devuelto"};
+        modeloTabla = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Hacer la tabla no editable
+            }
+        };
+        jTable1.setModel(modeloTabla);
+        
+        // Ajustar el ancho de las columnas
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);  // ID
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(200); // Libro
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(150); // Cliente
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(100); // Fecha Inicio
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(100); // Fecha Fin
+        jTable1.getColumnModel().getColumn(5).setPreferredWidth(80);  // Devuelto
+    }
+    
+    // Método para cargar los alquileres en la tabla
+    private void cargarAlquileresEnTabla(List<Alquiler> alquileres) {
+        // Limpiar la tabla
+        modeloTabla.setRowCount(0);
+        
+        // Verificar si hay resultados
+        if (alquileres.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                "No se encontraron alquileres", 
+                "Sin Resultados", 
+                JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        // Llenar la tabla con los datos
+        for (Alquiler alquiler : alquileres) {
+            Object[] fila = new Object[6];
+            fila[0] = alquiler.getId();
+            fila[1] = alquiler.getLibro().getTitulo();
+            fila[2] = alquiler.getCliente().getNombre();
+            fila[3] = alquiler.getFechaDeInicio();
+            fila[4] = alquiler.getFechaFin() != null ? alquiler.getFechaFin() : "N/A";
+            fila[5] = alquiler.getDevuelto();
+            
+            modeloTabla.addRow(fila);
+        }
+        
+        JOptionPane.showMessageDialog(this, 
+            "Se encontraron " + alquileres.size() + " alquiler(es)", 
+            "Resultados", 
+            JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -27,21 +92,213 @@ public class ConsultarAlquiler extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldIngresoNombreClienteOLibro = new javax.swing.JTextField();
+        jButtonBuscarPorNombreLibro = new javax.swing.JButton();
+        jButtonBuscarPorNombreCliente = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButtonMostrarAlqiuleres = new javax.swing.JButton();
+        jButtonActualizarAl = new javax.swing.JButton();
+        jButtonEliminarAl = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Ingrese el nombre del libro o del cliente:");
+
+        jTextFieldIngresoNombreClienteOLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIngresoNombreClienteOLibroActionPerformed(evt);
+            }
+        });
+
+        jButtonBuscarPorNombreLibro.setText("Buscar por nombre del Libro");
+        jButtonBuscarPorNombreLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarPorNombreLibroActionPerformed(evt);
+            }
+        });
+
+        jButtonBuscarPorNombreCliente.setText("Buscar por nombre del Cliente");
+        jButtonBuscarPorNombreCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarPorNombreClienteActionPerformed(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jButtonMostrarAlqiuleres.setText("Mostrar Alquileres");
+        jButtonMostrarAlqiuleres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarAlqiuleresActionPerformed(evt);
+            }
+        });
+
+        jButtonActualizarAl.setText("Actualizar Alquiler");
+        jButtonActualizarAl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarAlActionPerformed(evt);
+            }
+        });
+
+        jButtonEliminarAl.setText("Eliminar Alquiler");
+        jButtonEliminarAl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarAlActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Regresar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(jLabel1)
+                        .addGap(31, 31, 31)
+                        .addComponent(jTextFieldIngresoNombreClienteOLibro, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(164, 164, 164)
+                        .addComponent(jButtonBuscarPorNombreLibro)
+                        .addGap(75, 75, 75)
+                        .addComponent(jButtonBuscarPorNombreCliente))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonEliminarAl)
+                            .addComponent(jButtonMostrarAlqiuleres)
+                            .addComponent(jButtonActualizarAl)
+                            .addComponent(jButton4))))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldIngresoNombreClienteOLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBuscarPorNombreLibro)
+                    .addComponent(jButtonBuscarPorNombreCliente))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jButtonMostrarAlqiuleres)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButtonActualizarAl)
+                        .addGap(30, 30, 30)
+                        .addComponent(jButtonEliminarAl)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButton4)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldIngresoNombreClienteOLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIngresoNombreClienteOLibroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIngresoNombreClienteOLibroActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButtonActualizarAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarAlActionPerformed
+        ActualizarAlquiler actu = new ActualizarAlquiler(null, true);
+        actu.setLocationRelativeTo(null);
+        actu.setVisible(true);
+    }//GEN-LAST:event_jButtonActualizarAlActionPerformed
+
+    private void jButtonEliminarAlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarAlActionPerformed
+        EliminarAlquiler elim = new EliminarAlquiler(null, true);
+        elim.setLocationRelativeTo(null);
+        elim.setVisible(true);
+    }//GEN-LAST:event_jButtonEliminarAlActionPerformed
+
+    private void jButtonBuscarPorNombreLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPorNombreLibroActionPerformed
+        String tituloLibro = jTextFieldIngresoNombreClienteOLibro.getText().trim();
+        
+        if (tituloLibro.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                "Por favor ingrese el nombre del libro a buscar");
+            return;
+        }
+        
+        try {
+            List<Alquiler> alquileres = alquilerDAO.buscarPorLibro(tituloLibro);
+            cargarAlquileresEnTabla(alquileres);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                "Error al buscar alquileres por libro: " + e.getMessage(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButtonBuscarPorNombreLibroActionPerformed
+
+    private void jButtonBuscarPorNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarPorNombreClienteActionPerformed
+            String nombreCliente = jTextFieldIngresoNombreClienteOLibro.getText().trim();
+        
+        if (nombreCliente.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                "Por favor ingrese el nombre del cliente a buscar");
+            return;
+        }
+        
+        try {
+            List<Alquiler> alquileres = alquilerDAO.buscarPorCliente(nombreCliente);
+            cargarAlquileresEnTabla(alquileres);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                "Error al buscar alquileres por cliente: " + e.getMessage(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButtonBuscarPorNombreClienteActionPerformed
+
+    private void jButtonMostrarAlqiuleresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarAlqiuleresActionPerformed
+         try {
+            List<Alquiler> alquileres = alquilerDAO.listarAlquileres();
+            cargarAlquileresEnTabla(alquileres);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, 
+                "Error al listar los alquileres: " + e.getMessage(), 
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButtonMostrarAlqiuleresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +343,15 @@ public class ConsultarAlquiler extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonActualizarAl;
+    private javax.swing.JButton jButtonBuscarPorNombreCliente;
+    private javax.swing.JButton jButtonBuscarPorNombreLibro;
+    private javax.swing.JButton jButtonEliminarAl;
+    private javax.swing.JButton jButtonMostrarAlqiuleres;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldIngresoNombreClienteOLibro;
     // End of variables declaration//GEN-END:variables
 }

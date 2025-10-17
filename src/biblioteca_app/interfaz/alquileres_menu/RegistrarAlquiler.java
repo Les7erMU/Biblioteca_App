@@ -4,6 +4,16 @@
  */
 package biblioteca_app.interfaz.alquileres_menu;
 
+import biblioteca_app.model.Devuelto;
+import javax.swing.JOptionPane;
+import biblioteca_app.model.Libro;
+import biblioteca_app.model.Cliente;
+import biblioteca_app.dao.AlquilerDAO;
+import biblioteca_app.model.Alquiler;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  *
  * @author lester7u7
@@ -13,9 +23,27 @@ public class RegistrarAlquiler extends javax.swing.JDialog {
     /**
      * Creates new form RegistrarAlquiler
      */
+    private AlquilerDAO alquilerDAO;
+    
+     // Método para limpiar los campos del formulario
+    private void limpiarCampos() {
+        jTextFieldIngresoIdLibro.setText("");
+        jTextFieldIngresoIdCliente.setText("");
+        jTextFieldIngresoFInicio.setText("");
+        jTextFieldIngresoFFinal.setText("");
+        jComboBoxDevuelto.setSelectedIndex(0);
+    }
+    
+    
     public RegistrarAlquiler(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        alquilerDAO = new AlquilerDAO();
+        
+        //usando el enum devuelto
+        for(Devuelto devuelto : Devuelto.values()){
+            jComboBoxDevuelto.addItem(devuelto.toString());
+        }
     }
 
     /**
@@ -27,21 +55,191 @@ public class RegistrarAlquiler extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldIngresoIdLibro = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldIngresoIdCliente = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldIngresoFInicio = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldIngresoFFinal = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jComboBoxDevuelto = new javax.swing.JComboBox<>();
+        jButtonRegistrar = new javax.swing.JButton();
+        jButtonRegresar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Ingrese el id del Libro:");
+
+        jLabel2.setText("I:ngrese el id del cliente");
+
+        jLabel3.setText("Ingrese la fehca de inicio(ej. 2025-04-15):");
+
+        jLabel4.setText("Ingrese la fecha final del alquiler(ej. 2025-04-15):");
+
+        jLabel5.setText("Devuelto:");
+
+        jComboBoxDevuelto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxDevueltoActionPerformed(evt);
+            }
+        });
+
+        jButtonRegistrar.setText("Rgistrar");
+        jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarActionPerformed(evt);
+            }
+        });
+
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextFieldIngresoIdLibro, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                        .addComponent(jTextFieldIngresoIdCliente)
+                        .addComponent(jTextFieldIngresoFInicio)
+                        .addComponent(jTextFieldIngresoFFinal))
+                    .addComponent(jComboBoxDevuelto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(79, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonRegistrar)
+                .addGap(95, 95, 95)
+                .addComponent(jButtonRegresar)
+                .addGap(179, 179, 179))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldIngresoIdLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldIngresoIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTextFieldIngresoFInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextFieldIngresoFFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jComboBoxDevuelto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRegistrar)
+                    .addComponent(jButtonRegresar))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBoxDevueltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDevueltoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxDevueltoActionPerformed
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
+
+    private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
+        try{
+            if (jTextFieldIngresoIdLibro.getText().trim().isEmpty() || jTextFieldIngresoIdCliente.getText().trim().isEmpty() ||
+                    jTextFieldIngresoFInicio.getText().trim().isEmpty()){
+             JOptionPane.showMessageDialog(this, 
+                    "Por favor complete los campos obligatorios:\n- ID del Libro\n- ID del Cliente\n- Fecha de Inicio", 
+                    "Campos Incompletos", 
+                    JOptionPane.WARNING_MESSAGE);
+                return;
+        }
+            int idLibro = Integer.parseInt(jTextFieldIngresoIdLibro.getText().trim());
+            int idCliente = Integer.parseInt(jTextFieldIngresoIdCliente.getText().trim());
+            
+            // Parsear las fechas
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate fechaInicio = LocalDate.parse(jTextFieldIngresoFInicio.getText().trim(), formatter);
+            
+                 // La fecha final puede ser opcional (null)
+            LocalDate fechaFin = null;
+            if (!jTextFieldIngresoFFinal.getText().trim().isEmpty()) {
+                fechaFin = LocalDate.parse(jTextFieldIngresoFFinal.getText().trim(), formatter);
+                
+                // Validar que la fecha final no sea anterior a la fecha de inicio
+                if (fechaFin.isBefore(fechaInicio)) {
+                    JOptionPane.showMessageDialog(this, 
+                        "La fecha final no puede ser anterior a la fecha de inicio", 
+                        "Error en Fechas", 
+                        JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+            
+            
+            // Obtener el estado de devuelto del ComboBox
+            String devueltoStr = (String) jComboBoxDevuelto.getSelectedItem();
+            Devuelto devuelto = Devuelto.valueOf(devueltoStr);
+            
+            // Crear los objetos Libro y Cliente con los IDs
+            Libro libro = new Libro();
+            libro.setId(idLibro);
+            
+            Cliente cliente = new Cliente();
+            cliente.setId(idCliente);
+            
+            // Crear el objeto Alquiler
+            Alquiler alquiler = new Alquiler();
+            alquiler.setLibro(libro);
+            alquiler.setCliente(cliente);
+            alquiler.setFechaDeInicio(fechaInicio);
+            alquiler.setFechaFin(fechaFin);
+            alquiler.setDevuelto(devuelto);
+
+            // Registrar el alquiler
+            boolean registrado = alquilerDAO.registrarAlquiler(alquiler);
+            
+            if (registrado) {
+                // Limpiar los campos después de un registro exitoso
+                limpiarCampos();
+            }
+            
+        } catch(NumberFormatException e){
+            JOptionPane.showConfirmDialog(this, "el id del libro y del cliente deben de ser númericos");
+        } catch(DateTimeParseException e){
+            JOptionPane.showMessageDialog(this, "Formate debe de ser yyyy-mm-dd(ej. 2025-05-05)");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error al registrar alquiler");
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +284,17 @@ public class RegistrarAlquiler extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonRegistrar;
+    private javax.swing.JButton jButtonRegresar;
+    private javax.swing.JComboBox<String> jComboBoxDevuelto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField jTextFieldIngresoFFinal;
+    private javax.swing.JTextField jTextFieldIngresoFInicio;
+    private javax.swing.JTextField jTextFieldIngresoIdCliente;
+    private javax.swing.JTextField jTextFieldIngresoIdLibro;
     // End of variables declaration//GEN-END:variables
 }

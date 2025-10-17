@@ -29,6 +29,7 @@ public class ClientesMenu extends javax.swing.JDialog {
 
         jButtonRegistrarCliente = new javax.swing.JButton();
         jButtonConsultarCliente = new javax.swing.JButton();
+        jButtonRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -46,6 +47,13 @@ public class ClientesMenu extends javax.swing.JDialog {
             }
         });
 
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -53,6 +61,7 @@ public class ClientesMenu extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonRegresar)
                     .addComponent(jButtonConsultarCliente)
                     .addComponent(jButtonRegistrarCliente))
                 .addContainerGap(88, Short.MAX_VALUE))
@@ -62,9 +71,11 @@ public class ClientesMenu extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jButtonRegistrarCliente)
-                .addGap(46, 46, 46)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonConsultarCliente)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonRegresar)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
@@ -81,6 +92,10 @@ public class ClientesMenu extends javax.swing.JDialog {
         consultar.setLocationRelativeTo(null);
         consultar.setVisible(true);
     }//GEN-LAST:event_jButtonConsultarClienteActionPerformed
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,5 +142,6 @@ public class ClientesMenu extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConsultarCliente;
     private javax.swing.JButton jButtonRegistrarCliente;
+    private javax.swing.JButton jButtonRegresar;
     // End of variables declaration//GEN-END:variables
 }

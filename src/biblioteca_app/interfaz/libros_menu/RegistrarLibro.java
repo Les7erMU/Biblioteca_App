@@ -46,7 +46,6 @@ public class RegistrarLibro extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldIngresoGenero = new javax.swing.JTextField();
         jButtonRegistrarLibro = new javax.swing.JButton();
-        jButtonBorrarCampos = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jComboBoxEstadoLibro = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -67,13 +66,6 @@ public class RegistrarLibro extends javax.swing.JDialog {
         jButtonRegistrarLibro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegistrarLibroActionPerformed(evt);
-            }
-        });
-
-        jButtonBorrarCampos.setText("Borrar campos");
-        jButtonBorrarCampos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBorrarCamposActionPerformed(evt);
             }
         });
 
@@ -98,22 +90,9 @@ public class RegistrarLibro extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(108, 108, 108)
-                .addComponent(jButtonRegistrarLibro)
-                .addGap(49, 49, 49)
-                .addComponent(jButtonBorrarCampos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jButtonRegresar)
-                .addGap(42, 42, 42))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(101, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxEstadoLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(130, 130, 130))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -138,7 +117,18 @@ public class RegistrarLibro extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldIngresoAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldIngresoGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)))
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jButtonRegistrarLibro)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonRegresar)
+                            .addGap(100, 100, 100))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jComboBoxEstadoLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(130, 130, 130))))
                 .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
@@ -168,12 +158,11 @@ public class RegistrarLibro extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jComboBoxEstadoLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonRegistrarLibro)
-                    .addComponent(jButtonBorrarCampos)
-                    .addComponent(jButtonRegresar))
-                .addGap(24, 24, 24))
+                    .addComponent(jButtonRegresar)
+                    .addComponent(jButtonRegistrarLibro))
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -216,10 +205,6 @@ public class RegistrarLibro extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_jButtonRegistrarLibroActionPerformed
-
-    private void jButtonBorrarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarCamposActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonBorrarCamposActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
         this.dispose();
@@ -269,7 +254,6 @@ public class RegistrarLibro extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonBorrarCampos;
     private javax.swing.JButton jButtonRegistrarLibro;
     private javax.swing.JButton jButtonRegresar;
     private javax.swing.JComboBox<String> jComboBoxEstadoLibro;

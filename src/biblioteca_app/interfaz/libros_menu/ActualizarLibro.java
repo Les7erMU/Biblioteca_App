@@ -4,7 +4,10 @@
  */
 package biblioteca_app.interfaz.libros_menu;
 
+import biblioteca_app.dao.LibroDAO;
 import biblioteca_app.model.Estado;
+import biblioteca_app.model.Libro;
+import javax.swing.JOptionPane;
 /**
  *
  * @author lester7u7
@@ -43,7 +46,6 @@ public class ActualizarLibro extends javax.swing.JDialog {
         jTextFieldIngresoGenero = new javax.swing.JTextField();
         jComboBoxIngresoEstado = new javax.swing.JComboBox<>();
         jButtonActualizarLibro = new javax.swing.JButton();
-        jButtonBorrarCampos = new javax.swing.JButton();
         jButtonRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -65,10 +67,18 @@ public class ActualizarLibro extends javax.swing.JDialog {
         });
 
         jButtonActualizarLibro.setText("Actualizar");
-
-        jButtonBorrarCampos.setText("Borrar Campos");
+        jButtonActualizarLibro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarLibroActionPerformed(evt);
+            }
+        });
 
         jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,29 +87,26 @@ public class ActualizarLibro extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonActualizarLibro)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextFieldIngresoId, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
-                                .addComponent(jTextFieldIngresoTitulo)
-                                .addComponent(jTextFieldIngresoAutor)
-                                .addComponent(jTextFieldIngresoGenero))
-                            .addComponent(jComboBoxIngresoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jButtonBorrarCampos)
-                        .addGap(50, 50, 50)
-                        .addComponent(jButtonRegresar)
-                        .addContainerGap(59, Short.MAX_VALUE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextFieldIngresoId, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                        .addComponent(jTextFieldIngresoTitulo)
+                        .addComponent(jTextFieldIngresoAutor)
+                        .addComponent(jTextFieldIngresoGenero))
+                    .addComponent(jComboBoxIngresoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(187, 187, 187)
+                .addComponent(jButtonActualizarLibro)
+                .addGap(57, 57, 57)
+                .addComponent(jButtonRegresar)
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,12 +131,11 @@ public class ActualizarLibro extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jComboBoxIngresoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonActualizarLibro)
-                    .addComponent(jButtonBorrarCampos)
-                    .addComponent(jButtonRegresar))
-                .addGap(42, 42, 42))
+                    .addComponent(jButtonRegresar)
+                    .addComponent(jButtonActualizarLibro))
+                .addGap(65, 65, 65))
         );
 
         pack();
@@ -139,6 +145,56 @@ public class ActualizarLibro extends javax.swing.JDialog {
         String selec = (String) jComboBoxIngresoEstado.getSelectedItem();
         Estado estadoSelec = Estado.valueOf(selec);
     }//GEN-LAST:event_jComboBoxIngresoEstadoActionPerformed
+
+    private void jButtonActualizarLibroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarLibroActionPerformed
+        try {
+            
+            String idText = jTextFieldIngresoId.getText().trim();
+            if (idText.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ingrese el ID del libro a actualizar");
+                return;
+            }
+            int id = Integer.parseInt(idText);
+            
+            String titulo = jTextFieldIngresoTitulo.getText().trim();
+            String autor  = jTextFieldIngresoAutor.getText().trim();
+            String genero = jTextFieldIngresoGenero.getText().trim();
+            String estadoStr = (String) jComboBoxIngresoEstado.getSelectedItem();
+
+            if (titulo.isEmpty() || autor.isEmpty() || genero.isEmpty() || estadoStr == null) {
+                JOptionPane.showMessageDialog(this, "Por favor complete todos los campos.");
+                return;
+            }
+            
+            Estado estado = Estado.valueOf(estadoStr);
+            
+            Libro libro = new Libro(id, null, titulo, autor, genero, estado);
+            
+            LibroDAO dao = new LibroDAO();
+            boolean bien = dao.actualizarLibro(libro);
+            
+            if (bien){
+                JOptionPane.showMessageDialog(this, "Actualizado correctamente");
+                
+                jTextFieldIngresoTitulo.setText("");
+                jTextFieldIngresoAutor.setText("");
+                jTextFieldIngresoGenero.setText("");
+                jComboBoxIngresoEstado.setSelectedIndex(0);
+            } else {
+                JOptionPane.showMessageDialog(this, "No se pudo actualizar");
+            }
+            
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "El id debe de ser un numero valido");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error inseperado");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButtonActualizarLibroActionPerformed
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,7 +240,6 @@ public class ActualizarLibro extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonActualizarLibro;
-    private javax.swing.JButton jButtonBorrarCampos;
     private javax.swing.JButton jButtonRegresar;
     private javax.swing.JComboBox<String> jComboBoxIngresoEstado;
     private javax.swing.JLabel jLabel1;

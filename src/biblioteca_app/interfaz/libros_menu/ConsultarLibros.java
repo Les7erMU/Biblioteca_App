@@ -222,16 +222,10 @@ public class ConsultarLibros extends javax.swing.JDialog {
             return;
         }
         
-        int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
-        int confirmar = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar el libro?");
+        EliminarLibro elim = new EliminarLibro(null, true);
+        elim.setLocationRelativeTo(null);
+        elim.setVisible(true);
         
-        if (confirmar == JOptionPane.YES_OPTION){
-            JOptionPane.showMessageDialog(this, "Libro eliminado");
-            List<Libro> lista = libroDAO.listarLibros();
-            llenarTabla(lista);
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al eliminar el libro :c");
-        }
         
     }//GEN-LAST:event_jButtonEliminarLibroActionPerformed
 

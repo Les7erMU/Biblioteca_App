@@ -17,6 +17,10 @@ public class Alquiler {
     private LocalDate fechaDeInicio;
     private LocalDate fechaFin;
     private Devuelto devuelto;
+    
+    public Alquiler(){
+        
+    }
 
     public Alquiler(int id, Libro libro, Cliente cliente, LocalDate fechaDeInicio, LocalDate fechaFin, Devuelto devuelto) {
         this.id = id;
@@ -74,6 +78,4 @@ public class Alquiler {
     public void setDevuelto(Devuelto devuelto) {
         this.devuelto = devuelto;
     }
-    
-    
 }

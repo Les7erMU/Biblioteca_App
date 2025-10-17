@@ -34,6 +34,7 @@ public class Menu extends javax.swing.JDialog {
         jButtonLibrosMenu = new javax.swing.JButton();
         jButtonAlquileresMenu = new javax.swing.JButton();
         jButtonClientesMenu = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -58,6 +59,13 @@ public class Menu extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,6 +73,7 @@ public class Menu extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
                     .addComponent(jButtonClientesMenu)
                     .addComponent(jButtonAlquileresMenu)
                     .addComponent(jButtonLibrosMenu))
@@ -79,7 +88,9 @@ public class Menu extends javax.swing.JDialog {
                 .addComponent(jButtonAlquileresMenu)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonClientesMenu)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -102,6 +113,10 @@ public class Menu extends javax.swing.JDialog {
         cli.setLocationRelativeTo(null);
         cli.setVisible(true);
     }//GEN-LAST:event_jButtonClientesMenuActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,6 +161,7 @@ public class Menu extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAlquileresMenu;
     private javax.swing.JButton jButtonClientesMenu;
     private javax.swing.JButton jButtonLibrosMenu;

@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package biblioteca_app.interfaz.alquileres_menu;
+package biblioteca_app.interfaz.clientes_menu;
 
 /**
  *
  * @author lester7u7
  */
-public class AlquileresMenu extends javax.swing.JDialog {
+public class EliminarCliente extends javax.swing.JDialog {
 
     /**
-     * Creates new form AlquileresMenu
+     * Creates new form EliminarCliente
      */
-    public AlquileresMenu(java.awt.Frame parent, boolean modal) {
+    public EliminarCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -27,23 +27,19 @@ public class AlquileresMenu extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonRealizarAlquiler = new javax.swing.JButton();
-        jButtonConsultarAlquiler = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButtonEliminar = new javax.swing.JButton();
         jButtonRegresar = new javax.swing.JButton();
+        jTextFieldIngresoId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButtonRealizarAlquiler.setText("Realizar un Alquiler");
-        jButtonRealizarAlquiler.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRealizarAlquilerActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("Ingrese el Id del cliente:");
 
-        jButtonConsultarAlquiler.setText("Consultar Alquiler");
-        jButtonConsultarAlquiler.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConsultarAlquilerActionPerformed(evt);
+                jButtonEliminarActionPerformed(evt);
             }
         });
 
@@ -59,41 +55,38 @@ public class AlquileresMenu extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonConsultarAlquiler)
-                    .addComponent(jButtonRealizarAlquiler)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jButtonRegresar)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGap(84, 84, 84)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jTextFieldIngresoId, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(142, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonEliminar)
+                .addGap(29, 29, 29)
+                .addComponent(jButtonRegresar)
+                .addGap(150, 150, 150))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jButtonRealizarAlquiler)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonConsultarAlquiler)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonRegresar)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldIngresoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonEliminar)
+                    .addComponent(jButtonRegresar))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonRealizarAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarAlquilerActionPerformed
-        RegistrarAlquiler registrar = new RegistrarAlquiler(null, true);
-        registrar.setLocationRelativeTo(null);
-        registrar.setVisible(true);
-    }//GEN-LAST:event_jButtonRealizarAlquilerActionPerformed
-
-    private void jButtonConsultarAlquilerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarAlquilerActionPerformed
-        ConsultarAlquiler consul = new ConsultarAlquiler(null, true); 
-        consul.setLocationRelativeTo(null);
-        consul.setVisible(true);
-    }//GEN-LAST:event_jButtonConsultarAlquilerActionPerformed
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
         this.dispose();
@@ -116,20 +109,20 @@ public class AlquileresMenu extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AlquileresMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AlquileresMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AlquileresMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AlquileresMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AlquileresMenu dialog = new AlquileresMenu(new javax.swing.JFrame(), true);
+                EliminarCliente dialog = new EliminarCliente(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -142,8 +135,9 @@ public class AlquileresMenu extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonConsultarAlquiler;
-    private javax.swing.JButton jButtonRealizarAlquiler;
+    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonRegresar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextFieldIngresoId;
     // End of variables declaration//GEN-END:variables
 }

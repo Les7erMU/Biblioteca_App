@@ -15,6 +15,10 @@ public class Libro {
     private String autor;
     private String genero;
     private Estado estado;
+    
+    public Libro(){
+        
+    }
 
     public Libro(int id, String codigo, String titulo, String autor, String genero, Estado estado) {
         this.id = id;
@@ -71,7 +75,5 @@ public class Libro {
 
     public void setEstado(Estado estado) {
         this.estado = estado;
-    }
-    
-    
+    }   
 }

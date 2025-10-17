@@ -4,6 +4,10 @@
  */
 package biblioteca_app.interfaz.clientes_menu;
 
+import biblioteca_app.model.Cliente;
+import biblioteca_app.dao.ClienteDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lester7u7
@@ -32,11 +36,11 @@ public class RegistrarClientes extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButtonRegistrarCliente = new javax.swing.JButton();
-        jButtonBorrarCampos = new javax.swing.JButton();
         jTextFieldIngresoCodigo = new javax.swing.JTextField();
         jTextFieldIngresoNombre = new javax.swing.JTextField();
         jTextFieldIngresoTelefono = new javax.swing.JTextField();
         jTextFieldIngresoEmail = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -49,8 +53,24 @@ public class RegistrarClientes extends javax.swing.JDialog {
         jLabel4.setText("Ingrese el email/correo:");
 
         jButtonRegistrarCliente.setText("Registrar");
+        jButtonRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarClienteActionPerformed(evt);
+            }
+        });
 
-        jButtonBorrarCampos.setText("Borrar");
+        jTextFieldIngresoCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIngresoCodigoActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,10 +92,10 @@ public class RegistrarClientes extends javax.swing.JDialog {
                             .addComponent(jTextFieldIngresoTelefono)
                             .addComponent(jTextFieldIngresoEmail)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(202, 202, 202)
+                        .addGap(176, 176, 176)
                         .addComponent(jButtonRegistrarCliente)
-                        .addGap(71, 71, 71)
-                        .addComponent(jButtonBorrarCampos)))
+                        .addGap(73, 73, 73)
+                        .addComponent(jButton1)))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -100,12 +120,49 @@ public class RegistrarClientes extends javax.swing.JDialog {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonRegistrarCliente)
-                    .addComponent(jButtonBorrarCampos))
+                    .addComponent(jButton1))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarClienteActionPerformed
+        String codigo = jTextFieldIngresoCodigo.getText();
+        String nombre = jTextFieldIngresoNombre.getText();
+        String telefono = jTextFieldIngresoTelefono.getText();
+        String email = jTextFieldIngresoEmail.getText();
+        
+        //validando
+        if (codigo.isEmpty() || nombre.isEmpty() || telefono.isEmpty() || email.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Porfavor complete los campos");
+            return;
+        }
+        
+        Cliente cliente = new Cliente(0, codigo, nombre, telefono, email);
+        
+        ClienteDAO clienteDAO = new ClienteDAO();
+        boolean exito = clienteDAO.registrarCliente(cliente);
+        
+        if (exito){
+            JOptionPane.showMessageDialog(this, "Cliente registrado correctamente");
+            
+            jTextFieldIngresoCodigo.setText("");
+            jTextFieldIngresoNombre.setText("");
+            jTextFieldIngresoTelefono.setText("");
+            jTextFieldIngresoEmail.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al registrar el cliente");
+        }
+    }//GEN-LAST:event_jButtonRegistrarClienteActionPerformed
+
+    private void jTextFieldIngresoCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIngresoCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIngresoCodigoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,7 +208,7 @@ public class RegistrarClientes extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonBorrarCampos;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonRegistrarCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

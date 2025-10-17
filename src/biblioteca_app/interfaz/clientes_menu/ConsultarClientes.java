@@ -4,6 +4,12 @@
  */
 package biblioteca_app.interfaz.clientes_menu;
 
+import biblioteca_app.model.Cliente;
+import biblioteca_app.dao.ClienteDAO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lester7u7
@@ -13,9 +19,35 @@ public class ConsultarClientes extends javax.swing.JDialog {
     /**
      * Creates new form ConsultarClientes
      */
+    private ClienteDAO clienteDAO = new ClienteDAO();
+    private DefaultTableModel modeloTabla;
+    
+      //llenar la tabla
+    private void llenarTabla(List<Cliente> listaClientes){
+        modeloTabla.setRowCount(0);
+        for(Cliente cliente : listaClientes){
+            Object[] fila = {
+                cliente.getId(),
+                cliente.getCodigo(),
+                cliente.getNombre(),
+                cliente.getTelefono(),
+                cliente.getEmail()
+            };
+            //agregando a las filas
+            modeloTabla.addRow(fila);
+        }
+    }
+    
+    private void configurarTabla(){
+        String[] columnas = {"Id", "Codigo", "Nombre", "Telefono", "email"};
+        modeloTabla = new DefaultTableModel(columnas, 0);
+        jTable2.setModel(modeloTabla);
+    }
+    
     public ConsultarClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        configurarTabla();
     }
 
     /**
@@ -30,45 +62,88 @@ public class ConsultarClientes extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jTextFieldIngresoCodigo = new javax.swing.JTextField();
         jButtonBuscarCliente = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButtonActualizar = new javax.swing.JButton();
+        jButtonEliminar = new javax.swing.JButton();
+        jButtonRegresar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Ingrese el codigo del Cliente:");
 
         jButtonBuscarCliente.setText("Buscar");
+        jButtonBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarClienteActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jButton1.setText("Mostrar Clientes");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButtonActualizar.setText("Actualizar Cliente");
+        jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarActionPerformed(evt);
+            }
+        });
+
+        jButtonEliminar.setText("Eliminar Cliente");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
+
+        jButtonRegresar.setText("Regresar");
+        jButtonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegresarActionPerformed(evt);
+            }
+        });
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
                         .addComponent(jLabel1)
                         .addGap(32, 32, 32)
                         .addComponent(jTextFieldIngresoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39)
                         .addComponent(jButtonBuscarCliente))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(135, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 674, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jButtonActualizar)
+                            .addComponent(jButtonEliminar)
+                            .addComponent(jButtonRegresar))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,13 +153,69 @@ public class ConsultarClientes extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldIngresoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonBuscarCliente))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jButton1)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButtonActualizar)
+                        .addGap(27, 27, 27)
+                        .addComponent(jButtonEliminar)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButtonRegresar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButtonRegresarActionPerformed
+
+    private void jButtonBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarClienteActionPerformed
+        String titulo = jTextFieldIngresoCodigo.getText().trim();
+        
+        if (titulo.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese un título para buscar");
+            return;
+        }
+        
+        List<Cliente> lista = clienteDAO.buscarClientePorCodigo(titulo);
+        llenarTabla(lista);
+    }//GEN-LAST:event_jButtonBuscarClienteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        List<Cliente> lista = clienteDAO.listarClientes();
+        llenarTabla(lista);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
+        int filaSeleccionada = jTable2.getSelectedRow();
+        if (filaSeleccionada == -1){
+            JOptionPane.showMessageDialog(this, "Seleccione un cliente para actualizar");
+            return;
+        }
+        
+        ActualizarCliente actu = new ActualizarCliente(null, true);
+        actu.setLocationRelativeTo(null);
+        actu.setVisible(true);
+    }//GEN-LAST:event_jButtonActualizarActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        int filaSeleccionada = jTable2.getSelectedRow();
+        if (filaSeleccionada == -1){
+            JOptionPane.showMessageDialog(this, "Seleccione un cliente para actualizar");
+            return;
+        }
+        
+        EliminarCliente elim = new EliminarCliente(null, true);
+        elim.setLocationRelativeTo(null);
+        elim.setVisible(true);
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,10 +260,14 @@ public class ConsultarClientes extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonActualizar;
     private javax.swing.JButton jButtonBuscarCliente;
+    private javax.swing.JButton jButtonEliminar;
+    private javax.swing.JButton jButtonRegresar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextFieldIngresoCodigo;
     // End of variables declaration//GEN-END:variables
 }
